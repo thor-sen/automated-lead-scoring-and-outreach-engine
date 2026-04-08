@@ -8,10 +8,10 @@ A production-grade GTM automation engine built on live HubSpot data. Data flows 
 HubSpot CRM
     │
     ▼
-crm-data-connector ──► lead-enrichment-pipeline ──► lead-scoring-model
-                                                          │
-                                                          ▼
-ai-outreach-engine ◄── automated-rep-assignment-router ◄── composite-lead-scorer
+hubspot-data-connector ──► lead-enrichment-pipeline ──► ml-lead-scoring-model
+                                                              │
+                                                              ▼
+ai-outreach-engine ◄── territory-routing-service ◄── composite-lead-scorer
     │
     ▼
 gtm-intelligence-dashboard
@@ -19,11 +19,11 @@ gtm-intelligence-dashboard
 
 **Data flows left to right, top to bottom:**
 
-1. **crm-data-connector** pulls raw company, contact, and deal records from HubSpot
+1. **hubspot-data-connector** pulls raw company, contact, and deal records from HubSpot
 2. **lead-enrichment-pipeline** enriches companies with firmographic data from People Data Labs
-3. **lead-scoring-model** trains a logistic regression model and scores companies as ICP fit (0-100)
+3. **ml-lead-scoring-model** trains a logistic regression model on firmographic features and scores real companies as ICP fit (0-100)
 4. **composite-lead-scorer** combines firmographic, engagement, and pain signal scores into a weighted composite and assigns priority tiers
-5. **automated-rep-assignment-router** assigns companies to reps based on territory rules and company size via webhook
+5. **territory-routing-service** assigns companies to reps based on territory rules and company size via webhook
 6. **ai-outreach-engine** uses Claude to classify ICP fit, detect intent from pain signals, and generate personalized BDR outreach
 7. **gtm-intelligence-dashboard** surfaces everything in a Streamlit dashboard with filtering, routing audit, and pipeline projections
 
@@ -31,11 +31,11 @@ gtm-intelligence-dashboard
 
 | Component | Description |
 |-----------|-------------|
-| [crm-data-connector](https://github.com/thor-sen/crm-data-connector) | Pulls all company, contact, and deal records from HubSpot with automatic pagination |
+| [hubspot-data-connector](https://github.com/thor-sen/hubspot-data-connector) | Pulls all company, contact, and deal records from HubSpot with automatic pagination and rate limit handling |
 | [lead-enrichment-pipeline](https://github.com/thor-sen/lead-enrichment-pipeline) | Enriches companies via PDL API with employee count, revenue, industry, and tech stack |
-| [lead-scoring-model](https://github.com/thor-sen/lead-scoring-model) | Trains a logistic regression model on synthetic health system data and scores real HubSpot companies |
+| [ml-lead-scoring-model](https://github.com/thor-sen/ml-lead-scoring-model) | Trains a logistic regression model on firmographic features and scores real HubSpot companies (0-100) |
 | [composite-lead-scorer](https://github.com/thor-sen/composite-lead-scorer) | Computes weighted composite scores (firmographic 50%, engagement 25%, pain signals 25%) and assigns priority tiers |
-| [automated-rep-assignment-router](https://github.com/thor-sen/rep-assignment-router) | FastAPI webhook service that routes new companies to reps by territory and company size |
+| [territory-routing-service](https://github.com/thor-sen/territory-routing-service) | FastAPI webhook service that routes new companies to reps by territory and company size |
 | [ai-outreach-engine](https://github.com/thor-sen/ai-outreach-engine) | AI BDR pipeline using Claude for ICP classification, intent detection, and outreach generation |
 | [gtm-intelligence-dashboard](https://github.com/thor-sen/pipeline-intelligence-dashboard) | Streamlit dashboard for company filtering, routing audit, and pipeline health projections |
 
@@ -57,7 +57,7 @@ Two areas are partially stubbed. The lead enrichment pipeline is fully implement
 
 ## Setup
 
-Each component has its own README with setup instructions, `.env` requirements, and how to run. Start with the [crm-data-connector](crm-data-connector/) to pull data, then work through the pipeline in order.
+Each component has its own README with setup instructions, `.env` requirements, and how to run. Start with the [hubspot-data-connector](hubspot-data-connector/) to pull data, then work through the pipeline in order.
 
 All components require a `.env` file with at minimum:
 
