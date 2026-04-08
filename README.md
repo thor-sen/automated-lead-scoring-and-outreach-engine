@@ -35,9 +35,9 @@ gtm-intelligence-dashboard
 | [lead-enrichment-pipeline](https://github.com/thor-sen/lead-enrichment-pipeline) | Enriches companies via PDL API with employee count, revenue, industry, and tech stack |
 | [lead-scoring-model](https://github.com/thor-sen/lead-scoring-model) | Trains a logistic regression model on synthetic health system data and scores real HubSpot companies |
 | [composite-lead-scorer](https://github.com/thor-sen/composite-lead-scorer) | Computes weighted composite scores (firmographic 50%, engagement 25%, pain signals 25%) and assigns priority tiers |
-| [automated-rep-assignment-router](https://github.com/thor-sen/automated-rep-assignment-router) | FastAPI webhook service that routes new companies to reps by territory and company size |
+| [automated-rep-assignment-router](https://github.com/thor-sen/rep-assignment-router) | FastAPI webhook service that routes new companies to reps by territory and company size |
 | [ai-outreach-engine](https://github.com/thor-sen/ai-outreach-engine) | AI BDR pipeline using Claude for ICP classification, intent detection, and outreach generation |
-| [gtm-intelligence-dashboard](https://github.com/thor-sen/gtm-intelligence-dashboard) | Streamlit dashboard for company filtering, routing audit, and pipeline health projections |
+| [gtm-intelligence-dashboard](https://github.com/thor-sen/pipeline-intelligence-dashboard) | Streamlit dashboard for company filtering, routing audit, and pipeline health projections |
 
 ## What's Real vs. Stubbed
 
