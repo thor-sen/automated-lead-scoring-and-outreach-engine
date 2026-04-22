@@ -1,4 +1,4 @@
-# GTM Automation Engine
+# Automated Lead Scoring and Outreach Engine
 
 A production-grade GTM automation engine built on live HubSpot data. Data flows from CRM pull through enrichment, ML scoring, composite prioritization, territory routing, and AI-driven outreach generation. Each stage reads from and writes back to HubSpot, so the full pipeline produces real CRM changes — scored companies, assigned owners, prioritized tiers, and generated outreach messages visible to reps in their workflows. The system is built for a healthcare vertical (health system partnerships) but the architecture generalizes to any B2B sales motion with firmographic scoring, pain signal detection, and territory-based routing.
 
